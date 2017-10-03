@@ -1,0 +1,23 @@
+*{
+	padding: 0; margin: 0;
+}
+
+/*********************************/
+.modulo-arquivo{
+	display: block;
+	width: 450px; height: 70px;
+	border: 1px solid #ccc;
+	padding: 15px;
+	margin: 15px auto;
+}
+
+.modulo-arquivo-drop{
+	display: inline-block;
+	margin: 7px;
+	border: 2px dashed #ccc;
+	width: calc(100% - 14px); height: calc(100% - 14px);
+
+	font: 16px sans-serif; color: #ccc;
+	line-height: 56px; 
+	vertical-align: middle; text-align: center;
+}
