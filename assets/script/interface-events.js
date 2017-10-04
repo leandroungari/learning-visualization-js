@@ -11,16 +11,15 @@ window.onload = () => {
 
 		window.setTimeout(() => {
 
-			//console.log(file.exportProjectionExplorer())
-
-			//file.save('output', file.exportProjectionExplorer())
-			file.statistics()
-			//console.log(file)
-			//file.columnNormalization()
-			//file.lineNormalization()
-			file.zScoreNormalization()
 			console.log(file)
-			//console.log(novo)
+			file.statistics()
+			console.log(file)
+						
+			let novo = file.columnNormalization()
+			console.log(novo)
+			novo.statistics()
+			console.log(novo)
+
 
 		}, 1000)
 
@@ -30,8 +29,8 @@ window.onload = () => {
 		window.setTimeout(() => {
 
 			//console.log(file.exportProjectionExplorer())
-
-			file.save('output', file.exportCSV())
+			file.statistics()
+			//file.save('output', file.exportCSV())
 			console.log(file)
 
 		}, 1000)*/

@@ -82,7 +82,9 @@ class File {
 
 	columnNormalization(){
 
-		this.data.map((linha) => {
+		let clone = this.clone()
+
+		clone.data.map((linha) => {
 
 			return Object.keys(linha).map((coluna) => {
 
@@ -90,11 +92,15 @@ class File {
 				linha[coluna] = (Number.isNaN(valor) ? linha[coluna] : valor)
 			})
 		})
+
+		return clone
 	}
 
 	lineNormalization(){
 
-		this.data.map((linha) => {
+		let clone = this.clone()
+	
+		clone.data.map((linha) => {
 
 			let total = Object.values(linha).reduce((total, elem) => {
 				return total + (Number.isNaN(Number(elem)) ? 0 : elem*elem)
@@ -108,11 +114,15 @@ class File {
 				linha[coluna] = (Number.isNaN(valor) ? linha[coluna] : valor)
 			})
 		})
+
+		return clone
 	}
 
 	zScoreNormalization(){
 
-		this.data.map((linha) => {
+		let clone = this.clone()
+
+		clone.data.map((linha) => {
 
 			return Object.keys(linha).map((coluna) => {
 
@@ -120,6 +130,15 @@ class File {
 				linha[coluna] = (Number.isNaN(valor) ? linha[coluna] : valor)
 			})
 		})	
+
+		return clone
+	}
+
+	clone(){
+
+		return Object.assign( window.eval(`new ${this.constructor.name}()`), JSON.parse(JSON.stringify(this)))
+
+
 	}
 }
 
@@ -192,7 +211,6 @@ class ProjectionExplorerFile extends File{
 			this.data.push(object)
 		}
 
-		//this.statistcs()
 	}
 
 	exportCSV(){
