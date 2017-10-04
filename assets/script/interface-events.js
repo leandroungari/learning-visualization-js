@@ -14,8 +14,13 @@ window.onload = () => {
 			//console.log(file.exportProjectionExplorer())
 
 			//file.save('output', file.exportProjectionExplorer())
-			file.statistics();
+			file.statistics()
+			//console.log(file)
+			//file.columnNormalization()
+			//file.lineNormalization()
+			file.zScoreNormalization()
 			console.log(file)
+			//console.log(novo)
 
 		}, 1000)
 

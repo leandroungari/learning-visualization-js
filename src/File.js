@@ -49,8 +49,8 @@ class File {
 
 		Object.keys(this.stats).forEach( (e) => {
 
-			let set = this.stats[e].data.sort()
-			
+			let set = this.stats[e].data.sort((a,b) => {return a-b})
+
 			this.stats[e].min = set[0]
 			this.stats[e].max = set[set.length - 1]
 
@@ -68,7 +68,7 @@ class File {
 			//media
 			this.stats[e].average = set.reduce((total, e) => {
 				return total + e
-			})/set.length
+			}, 0)/set.length
 
 			//desvio padrao
 			let dp = set.reduce((total, a) => {
@@ -84,8 +84,42 @@ class File {
 
 		this.data.map((linha) => {
 
-			
+			return Object.keys(linha).map((coluna) => {
+
+				let valor = (linha[coluna] - this.stats[coluna].min)/(this.stats[coluna].max - this.stats[coluna].min)
+				linha[coluna] = (Number.isNaN(valor) ? linha[coluna] : valor)
+			})
 		})
+	}
+
+	lineNormalization(){
+
+		this.data.map((linha) => {
+
+			let total = Object.values(linha).reduce((total, elem) => {
+				return total + (Number.isNaN(Number(elem)) ? 0 : elem*elem)
+			}, 0)
+
+			total = Math.sqrt(total)
+
+			return Object.keys(linha).map((coluna) => {
+
+				let valor = Math.pow(linha[coluna], 2)/total
+				linha[coluna] = (Number.isNaN(valor) ? linha[coluna] : valor)
+			})
+		})
+	}
+
+	zScoreNormalization(){
+
+		this.data.map((linha) => {
+
+			return Object.keys(linha).map((coluna) => {
+
+				let valor = (linha[coluna] - this.stats[coluna].average)/(this.stats[coluna].dp)
+				linha[coluna] = (Number.isNaN(valor) ? linha[coluna] : valor)
+			})
+		})	
 	}
 }
 
