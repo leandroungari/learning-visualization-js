@@ -11,6 +11,11 @@ class File {
 		}
 	}
 
+	/**
+	 * [read description]
+	 * @param  {[type]} file [description]
+	 * @return {[type]}      [description]
+	 */
 	read(file){
 
 		this.file = {
